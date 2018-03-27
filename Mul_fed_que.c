@@ -20,3 +20,21 @@ int main()
 		printf("Student or Faculty Queue\n[ 0 / 1 ] : ");
 		scanf("%d", &queue_type[i]);
 	}
+
+	system("cls");
+
+	printf("These are Student Processes\n");
+	printf("\nPROCESS NO\tBURST TIME");
+	for(i=0;i<no_of_processes;i++){
+		if(queue_type[i]==0){
+			printf("\n%d \t\t %d ", process[i], burst_time[i]);
+		}
+	}
+
+	printf("\nThese are Faculty Processes\n");
+	printf("\nPROCESS NO\tBURST TIME");
+	for(i=0;i<no_of_processes;i++){
+		if(queue_type[i]==1){
+			printf("\n%d \t\t %d ", process[i], burst_time[i]);
+		}
+	}
