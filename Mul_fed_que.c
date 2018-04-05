@@ -13,7 +13,7 @@ int main()
 	char ch;
 	printf("Total No of Processes ?? : ");
 	scanf("%d", &no_of_processes);
-	for (i = 0; i < no_of_processes; i++){
+	for (i = 0; i < no_of_processes; i++) {
 		process[i] = i;
 		printf("Please Enter the Burst Time of the Process %d : ", i);
 		scanf("%d", &burst_time[i]);
@@ -25,16 +25,16 @@ int main()
 
 	printf("These are Student Processes\n");
 	printf("\nPROCESS NO\tBURST TIME");
-	for(i=0;i<no_of_processes;i++){
-		if(queue_type[i]==0){
+	for (i = 0; i < no_of_processes; i++) {
+		if (queue_type[i] == 0) {
 			printf("\n%d \t\t %d ", process[i], burst_time[i]);
 		}
 	}
 
 	printf("\nThese are Faculty Processes\n");
 	printf("\nPROCESS NO\tBURST TIME");
-	for(i=0;i<no_of_processes;i++){
-		if(queue_type[i]==1){
+	for (i = 0; i < no_of_processes; i++) {
+		if (queue_type[i] == 1) {
 			printf("\n%d \t\t %d ", process[i], burst_time[i]);
 		}
 	}
@@ -45,7 +45,7 @@ int main()
 
 	for (i = 0; i < no_of_processes; i++)
 		for (k = i + 1; k < no_of_processes; k++)
-			if (queue_type[i] > queue_type[k]){
+			if (queue_type[i] > queue_type[k]) {
 				temp = process[i];
 				process[i] = process[k];
 				process[k] = temp;
@@ -59,9 +59,15 @@ int main()
 
 	waiting_avg = waiting_time[0] = 0;
 	turnaround_avg = turnaround_time[0] = burst_time[0];
-	for (i = 1; i < no_of_processes; i++){
+	for (i = 1; i < no_of_processes; i++) {
 		waiting_time[i] = waiting_time[i - 1] + burst_time[i - 1];
 		turnaround_time[i] = turnaround_time[i - 1] + burst_time[i];
 		waiting_avg = waiting_avg + waiting_time[i];
 		turnaround_avg = turnaround_avg + turnaround_time[i];
 	}
+	printf("\nPROCESS NO\t Student/Faculty \tBURST TIME\tWAITING TIME\tTURNAROUND TIME");
+	for (i = 0; i < no_of_processes; i++)
+		printf("\n%d \t\t %d \t\t\t %d \t\t %d \t\t %d ", process[i], queue_type[i], burst_time[i], waiting_time[i], turnaround_time[i]);
+	printf("\nAverage Waiting Time is : %f", waiting_avg / no_of_processes);
+	printf("\nAverage Turnaround Time is : %f", turnaround_avg / no_of_processes);
+}
